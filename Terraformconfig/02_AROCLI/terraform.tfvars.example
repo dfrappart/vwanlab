@@ -1,0 +1,22 @@
+######################################################################
+# config variables 
+######################################################################
+
+#Provider variable
+
+AzureSubscriptionID                     = ""
+AzureClientID                           = ""
+AzureClientSecret                       = ""
+AzureTenantID                           = ""
+
+statestoa                               = ""
+statecontainer                          = ""
+statekeyAKSClusState                   = ""
+statestoakey                            = ""
+
+SubsetupSTOAName                        = ""
+SubsetupContainerName                   = ""
+SubsetupKey                             = ""
+SubsetupAccessKey                       = ""
+
+

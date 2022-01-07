@@ -16,4 +16,5 @@ backend.hcl
 /armextract/
 .terraform.lock.hcl
 /Infracost/Infracost_Assets/*
+*.binary
 

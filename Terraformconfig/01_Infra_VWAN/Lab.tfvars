@@ -11,7 +11,7 @@ Project                             = "vwan"
 Environment                         = "lab"
 
 ResourcesSuffix                     = "vwan"
-ResourceGroupSuffixList             = ["spk1","spk2","vhub","cpt","spkaro"]
+ResourceGroupSuffixList             = ["spk1","spk2","vhub","cpt","spkaro","spkaks"]
 
 DefaultTags                         = {
     ResourceOwner                       = "That would be me"

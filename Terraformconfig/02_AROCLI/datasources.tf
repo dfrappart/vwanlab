@@ -15,7 +15,7 @@ data "azurerm_client_config" "currentclientconfig" {}
 
 
 #############################################################################
-#data source for Network State
+#data source for subsetup State
 
 
 

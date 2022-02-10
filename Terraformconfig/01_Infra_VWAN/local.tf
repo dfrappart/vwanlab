@@ -23,6 +23,13 @@ locals {
             IsVMDeployed     = false
             TargetRGIndex    = 4   
         }
+        "Spoke4" = {
+            VNetAddressSpace = "172.23.0.0/16"
+            VNetSuffix       = "${var.ResourcesSuffix}${var.ResourceGroupSuffixList[5]}"
+            IsBastionEnabled = false
+            IsVMDeployed     = false
+            TargetRGIndex    = 5   
+        }
     }
 
 

@@ -344,7 +344,55 @@ resource "azurerm_firewall_policy_rule_collection_group" "AROFWRules" {
 
 }
 
+resource "azurerm_firewall_policy_rule_collection_group" "AKSFWRules" {
+  name                                    = "akscollectionrule"
+  firewall_policy_id                      = azurerm_firewall_policy.FWPolicy.id
+  priority                                = "2100"
 
+  application_rule_collection {
+    name                                  = "aks"
+    action                                = "Allow"
+    priority                              = 2102
+
+    rule {
+      name                                = "aksoegressforinstall"
+      source_addresses                    = concat(module.SpokeVNet["Spoke4"].FESubnetFullOutput.address_prefixes,module.SpokeVNet["Spoke4"].BESubnetFullOutput.address_prefixes)
+      destination_fqdns                   = [                                            
+                                              "*.westeurope.azmk8s.io",
+                                              "mcr.microsoft.com",
+                                              "*.data.mcr.microsoft.com",
+                                              "management.azure.com",
+                                              "login.microsoftonline.com",
+                                              "packages.microsoft.com",
+                                              "acs-mirror.azureedge.net",
+                                              "*.quay.io"
+
+                                          ]
+
+      protocols {
+        type                              = "Https"
+        port                              = 443
+      }
+    }
+
+
+
+  }
+
+  network_rule_collection {
+    name     = "aksoegressubuntuntp"
+    priority = 2101
+    action   = "Allow"
+    rule {
+      name                  = "aksoegressubuntuntp"
+      protocols             = ["Any"]
+      source_addresses      = concat(module.SpokeVNet["Spoke4"].FESubnetFullOutput.address_prefixes,module.SpokeVNet["Spoke4"].BESubnetFullOutput.address_prefixes)
+      destination_addresses = ["*"]
+      destination_ports     = ["1194","9000","123","53","443","9153"]
+    }
+  }
+
+}
 
 resource "azurerm_firewall_policy_rule_collection_group" "Spk2FWRules" {
   name                                    = "Spk2FWRules"
